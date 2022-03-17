@@ -4,9 +4,13 @@ import Context from "../../context";
 import { useState } from "react";
 
 function ToDoList() {
-   const [array,updArry] = useState([{id:1,text:'abcdgfasddaad',done:false,date:'17/3/2022'}])
+   const [array,setArry] = useState([{id:1,text:'abcdgfasddaad',done:false,date:'17/3/2022'}]);
+   
+  function updArry(obj) {
+    setArry(prev => [...prev, obj]);
+  }
+   
 
-  // const arr = [{id:1,text:'abcdgfasddaad',done:false,date:'17/3/2022'}]
   return (
     <Context.Provider value={{array,updArry}}>
       <div className="main">

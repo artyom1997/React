@@ -16,13 +16,12 @@ function AddToDo() {
     obj.text = newToDo;
     obj.date = "17/3/2022";
     obj.done = false;
-    arr.push(obj)
-    ContextData.updArry(arr);    
+    ContextData.updArry(obj);    
   };
   return (
     <div className="todo-list-main">
       <div className="add-main">
-        <input type="text" onChange={getInputValue} />
+        <input type="text" onChange={getInputValue}  />
         <button
           onClick={() => {
             addNewToDo();

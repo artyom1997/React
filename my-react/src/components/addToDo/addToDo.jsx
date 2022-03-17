@@ -4,24 +4,30 @@ import Context from "../../context";
 import { useContext } from "react";
 
 function AddToDo() {
-  const ContextData = useContext(Context)
+  const ContextData = useContext(Context);
   let arr = ContextData.array;
   let newToDo = "";
   const getInputValue = (event) => {
     newToDo = event.target.value;
   };
+   
+ function generateNewToDo() {
+   let date = new Date();
+   this.id = Math.floor(Math.random() * 100);
+   this.text =  newToDo;
+   this.date = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+   this.done = false
+ }
+
   const addNewToDo = () => {
-    let obj = {};
-    obj.id = arr[arr.length - 1].id + 1;
-    obj.text = newToDo;
-    obj.date = "17/3/2022";
-    obj.done = false;
-    ContextData.updArry(obj);    
+    let obj = new generateNewToDo();
+    arr.push(obj);
+    ContextData.updArry();
   };
   return (
     <div className="todo-list-main">
       <div className="add-main">
-        <input type="text" onChange={getInputValue}  />
+        <input type="text" onChange={getInputValue} />
         <button
           onClick={() => {
             addNewToDo();
@@ -31,8 +37,7 @@ function AddToDo() {
         </button>
       </div>
       <ul className="todo-list">
-        {
-        arr.map((el) => {
+        {arr.map((el) => {
           return <ToDo info={el} key={el.id}></ToDo>;
         })}
       </ul>

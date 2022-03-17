@@ -1,19 +1,28 @@
+.todo-list-main {
+    width: 100%;
+    height: inherit;
+    position: absolute;
+    top: 5%;
+}
+
+
 .add-main {
-    width: 60%;
+    width: 100%;
     height: 30px;
     display: flex;
     justify-content: space-between;
-    position: absolute;
-    top: 5%;
-    left: 20%;
 }
-
 .add-main input {
     width: 84%;
 }
 
 .add-main button {
     width: 14%;
-    background-color: rgb(57, 214, 57);
+    background-color: rgb(88, 190, 41);
     color: whitesmoke;
+}
+
+.todo-list {
+    width: 100%;
+    margin-top: 10px;
 }

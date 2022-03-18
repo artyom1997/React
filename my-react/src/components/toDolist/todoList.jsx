@@ -4,14 +4,11 @@ import Context from "../../context";
 import { useState } from "react";
 
 function ToDoList() {
-  const [array, setArry] = useState([
-    { id: 1, text: "abcdgfasddaad", done: false, date: "17/3/2022" },
-  ]);
+  const [array, setArry] = useState([]);
 
   function updArry() {
     let arr = [...array];
     setArry(arr);
-    console.log(array);
   }
 
   return (

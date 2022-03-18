@@ -1,33 +1,58 @@
 import "./addToDo.css";
 import ToDo from "../toDoLine/toDo";
 import Context from "../../context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+
+let changeobj = {
+  status: false,
+  obj: {},
+};
 
 function AddToDo() {
   const ContextData = useContext(Context);
+
   let arr = ContextData.array;
-  let newToDo = "";
+  let [newToDo, setNewToDo] = useState("");
   const getInputValue = (event) => {
-    newToDo = event.target.value;
+    setNewToDo(event.target.value);
   };
-   
- function generateNewToDo() {
-   let date = new Date();
-   this.id = Math.floor(Math.random() * 100);
-   this.text =  newToDo;
-   this.date = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-   this.done = false
- }
+
+  function generateNewToDo() {
+    let date = new Date();
+    this.id = Math.floor(Math.random() * 100);
+    this.text = newToDo;
+    this.date = `${date.getDate()}/${
+      date.getMonth() + 1
+    }/${date.getFullYear()}`;
+    this.done = false;
+  }
 
   const addNewToDo = () => {
-    let obj = new generateNewToDo();
-    arr.push(obj);
+    if (changeobj.status) {
+      arr.forEach((el) => {
+        if (el.id === changeobj.obj.id) {
+           el.text = newToDo;
+        }
+      });
+      changeobj.status = false;
+    } else {
+      let obj = new generateNewToDo();
+      arr.push(obj);
+    }
     ContextData.updArry();
+    setNewToDo("");
   };
+
+  function changeToDo(obj) {
+    setNewToDo(obj.text);
+    changeobj.status = true;
+    changeobj.obj = obj;
+  }
+
   return (
     <div className="todo-list-main">
       <div className="add-main">
-        <input type="text" onChange={getInputValue} />
+        <input type="text" onChange={getInputValue} value={newToDo} />
         <button
           onClick={() => {
             addNewToDo();
@@ -38,7 +63,7 @@ function AddToDo() {
       </div>
       <ul className="todo-list">
         {arr.map((el) => {
-          return <ToDo info={el} key={el.id}></ToDo>;
+          return <ToDo info={el} key={el.id} changeToDo={changeToDo}></ToDo>;
         })}
       </ul>
     </div>

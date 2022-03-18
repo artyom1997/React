@@ -20,6 +20,11 @@ function ToDo(props) {
     ContextData.updArry();
   }
 
+  function changeToDo(obj){
+
+    props.changeToDo(obj)
+  }
+
   return (
     <li className="todo">
       <input
@@ -34,7 +39,7 @@ function ToDo(props) {
         <div>{props.info.date}</div>
       </div>
       <div className="todo-controll">
-        <button>Y</button>
+        <button onClick={changeToDo.bind(null, props.info)}>Change</button>
         <button onClick={deleteToDo.bind(null, props.info)}>X</button>
       </div>
     </li>

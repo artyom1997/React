@@ -22,7 +22,7 @@
 
 .todo-controll {
     display: flex;
-    width: 4%;
+    width: 8%;
     justify-content: space-between;
     margin-right: 5px;
 }
